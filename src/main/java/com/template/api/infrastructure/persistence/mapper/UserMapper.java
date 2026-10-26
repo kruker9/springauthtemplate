@@ -18,7 +18,7 @@ public class UserMapper {
     }
 
     public static UserEntity toEntity(User user) {
-        var entity = new UserEntity();
+        final var entity = new UserEntity();
         entity.setId(user.getId());
         entity.setVerificationCodeExpirationDate(user.getVerificationCodeExpirationDate());
         entity.setVerificationCode(user.getVerificationCode());
