@@ -5,8 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SpringLogger implements APILogger {
-    private Logger logger = LoggerFactory.getLogger(SpringLogger.class);
-
+    private final Logger logger = LoggerFactory.getLogger(SpringLogger.class);
 
     @Override
     public void info(String message) {
