@@ -29,7 +29,7 @@ public class RegisterCommandHandler implements Command.Handler<RegisterCommand, 
     }
 
     private User generateUser(String email, String password) {
-        var user = new User(
+        final var user = new User(
                 UUID.randomUUID().toString(),
                 email,
                 password,
@@ -42,18 +42,18 @@ public class RegisterCommandHandler implements Command.Handler<RegisterCommand, 
     }
 
     private void sendVerificationCode(User user) {
-        var verificationCode = user.getVerificationCode();
+        final var verificationCode = user.getVerificationCode();
         mailer.sendVerificationCode(user.getEmailAddress(),  verificationCode);
     }
 
     @Override
     public IdResponse handle(RegisterCommand registerCommand) {
         apiLogger.info("Register command received");
-        var maybeUser = userRepository.findByEmailAddress(registerCommand.emailAddress());
+        final var maybeUser = userRepository.findByEmailAddress(registerCommand.emailAddress());
         if (maybeUser.isPresent()) {
             throw new UnauthorizedException("User already exist");
         }
-        var user = generateUser(registerCommand.emailAddress(), registerCommand.password());
+        final var user = generateUser(registerCommand.emailAddress(), registerCommand.password());
         sendVerificationCode(user);
         apiLogger.info("New verification code generated");
         return new IdResponse(user.getId());

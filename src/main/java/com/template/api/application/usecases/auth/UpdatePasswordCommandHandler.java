@@ -42,7 +42,7 @@ public class UpdatePasswordCommandHandler implements Command.Handler<UpdatePassw
             throw new UnauthorizedException("Verification code expired");
         }
 
-        var password = new Password(updatePasswordCommand.password(), null);
+        final var password = new Password(updatePasswordCommand.password(), null);
 
         if (Objects.equals(user.getVerificationCode(), updatePasswordCommand.verificationCode())) {
             user.resetPassword(passwordHasher.hash(password.getClearPassword()));

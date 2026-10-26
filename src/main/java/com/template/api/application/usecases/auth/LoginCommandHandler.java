@@ -29,11 +29,11 @@ public class LoginCommandHandler implements Command.Handler<LoginCommand, Logged
     @Override
     public LoggedInUserViewModel handle(LoginCommand loginCommand) {
         apiLogger.info("Login command received");
-        var user = this.userRepository
+        final var user = this.userRepository
                 .findByEmailAddress(loginCommand.emailAddress())
                 .orElseThrow(() -> new NotFoundException("User"));
 
-        var match = this.passwordHasher.match(
+        final var match = this.passwordHasher.match(
                 loginCommand.password(),
                 user.getPassword()
         );
@@ -46,8 +46,8 @@ public class LoginCommandHandler implements Command.Handler<LoginCommand, Logged
             throw new ForbiddenException("User is not active");
         }
 
-        var accessToken = this.jwtService.generateAccessToken(user);
-        var refreshToken = this.jwtService.generateRefreshToken(user);
+        final var accessToken = this.jwtService.generateAccessToken(user);
+        final var refreshToken = this.jwtService.generateRefreshToken(user);
 
         apiLogger.info("Refresh and access token generated");
 

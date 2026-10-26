@@ -23,12 +23,12 @@ public class RefreshTokenCommandHandler implements Command.Handler<RefreshTokenC
     public AccessTokenViewModel handle(RefreshTokenCommand refreshTokenCommand) {
         try {
             apiLogger.info("RefreshCommand received");
-            var authUser = jwtService.parseRefreshToken(refreshTokenCommand.refreshToken());
+            final var authUser = jwtService.parseRefreshToken(refreshTokenCommand.refreshToken());
 
-            var user = userRepository.findById(authUser.getId())
+            final var user = userRepository.findById(authUser.getId())
                     .orElseThrow(NotFoundException::new);
 
-            var accessToken = jwtService.generateAccessToken(user);
+            final var accessToken = jwtService.generateAccessToken(user);
 
             apiLogger.info("Refresh token generated");
 
