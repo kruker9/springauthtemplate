@@ -10,7 +10,7 @@ public class Password {
     private static final Pattern SPECIAL_CHAR_PATTERN = Pattern.compile("[!@#$%^&*(),.?\":{}|<>]");
 
     private String clearPassword;
-    private String hashedPassword;
+    private final String hashedPassword;
 
     public Password(String clearPassword, String hashedPassword) {
         if (clearPassword != null && !clearPassword.isBlank()) {

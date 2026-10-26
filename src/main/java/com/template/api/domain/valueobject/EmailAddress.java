@@ -7,7 +7,7 @@ public class EmailAddress {
             "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
     );
 
-    private String value;
+    private final String value;
 
     public EmailAddress(String value) {
         if (value == null || value.isBlank()) {

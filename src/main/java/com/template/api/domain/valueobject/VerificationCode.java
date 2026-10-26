@@ -7,7 +7,7 @@ public class VerificationCode {
     private static final int CODE_LENGTH = 5;
     private static final SecureRandom random = new SecureRandom();
 
-    private String value;
+    private final String value;
 
     private String generateCode() {
         final StringBuilder code = new StringBuilder(CODE_LENGTH);
