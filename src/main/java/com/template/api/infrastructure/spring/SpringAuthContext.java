@@ -4,12 +4,13 @@ import com.template.api.application.ports.AuthContext;
 import com.template.api.domain.model.AuthUser;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class SpringAuthContext implements AuthContext {
     @Override
     public boolean isAuthenticated() {
-        return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        return Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).isAuthenticated();
     }
 
     @Override
@@ -22,7 +23,6 @@ public class SpringAuthContext implements AuthContext {
             if (auth.getPrincipal() instanceof AuthUser) {
                 return (AuthUser) auth.getPrincipal();
             }
-
             return null;
         });
     }
