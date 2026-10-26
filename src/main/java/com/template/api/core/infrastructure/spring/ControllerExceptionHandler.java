@@ -47,7 +47,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponse(HttpStatus.METHOD_NOT_ALLOWED, ex.getMessage(), null);
     }
 
-
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException e) {
         apiLogger.warn(e.getMessage());
@@ -108,7 +107,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
             HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         apiLogger.warn("Validation error: " + ex.getMessage());
 
-        Map<String, String> errors = ex.getBindingResult()
+        final Map<String, String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
                 .collect(Collectors.toMap(
@@ -204,7 +203,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handleConstraintViolation(ConstraintViolationException ex) {
         apiLogger.warn("Constraint violation: " + ex.getMessage());
 
-        Map<String, String> errors = ex.getConstraintViolations()
+        final Map<String, String> errors = ex.getConstraintViolations()
                 .stream()
                 .collect(Collectors.toMap(
                         v -> v.getPropertyPath().toString(),
@@ -245,7 +244,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ResponseEntity<Object> buildResponse(HttpStatus status, String message, Map<String, String> errors) {
-        Map<String, Object> body = Map.of(
+        final Map<String, Object> body = Map.of(
                 "timestamp", Instant.now().toString(),
                 "status", status.value(),
                 "error", status.getReasonPhrase(),
