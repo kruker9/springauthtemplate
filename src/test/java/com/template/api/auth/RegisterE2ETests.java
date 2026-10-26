@@ -57,8 +57,8 @@ public class RegisterE2ETests extends IntegrationTests {
 
             var user = userRepository.findById(idResponse.getId()).orElseThrow();
 
-            assertEquals(dto.getEmail(), user.getEmailAddress());
-            assertNotEquals(dto.getPassword(), user.getPassword());
+            assertEquals(dto.email(), user.getEmailAddress());
+            assertNotEquals(dto.password(), user.getPassword());
             assertNotNull(user.getVerificationCode());
             assertNotNull(user.getVerificationCodeExpirationDate());
             assertFalse(user.isActive());

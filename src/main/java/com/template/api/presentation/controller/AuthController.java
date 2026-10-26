@@ -27,8 +27,8 @@ public class AuthController {
             @Valid @RequestBody RegisterDTO dto
     ) {
         return new ResponseEntity<>(pipeline.send(new RegisterCommand(
-                dto.getEmail(),
-                dto.getPassword()
+                dto.email(),
+                dto.password()
         )), HttpStatus.CREATED);
     }
 
@@ -37,8 +37,8 @@ public class AuthController {
             @Valid @RequestBody LoginDTO dto
     ) {
         return ResponseEntity.ok(pipeline.send(new LoginCommand(
-                dto.getEmail(),
-                dto.getPassword()
+                dto.email(),
+                dto.password()
         )));
     }
 
@@ -47,8 +47,8 @@ public class AuthController {
             @Valid @RequestBody ActiveAccountDTO dto
     ) {
         return ResponseEntity.ok(pipeline.send(new ActivateAccountCommand(
-                dto.getEmail(),
-                dto.getVerificationCode()
+                dto.email(),
+                dto.verificationCode()
         )));
     }
 
@@ -57,7 +57,7 @@ public class AuthController {
             @Valid @RequestBody RefreshTokenDTO dto
     ) {
         return ResponseEntity.ok(pipeline.send(new RefreshTokenCommand(
-                dto.getRefreshToken()
+                dto.refreshToken()
         )));
     }
 
@@ -66,7 +66,7 @@ public class AuthController {
             @Valid @RequestBody ResetPasswordRequestDTO dto
     ) {
         return ResponseEntity.ok(pipeline.send(new ResetPasswordRequestCommand(
-                dto.getEmail()
+                dto.email()
         )));
     }
 
@@ -75,9 +75,9 @@ public class AuthController {
             @Valid @RequestBody UpdatePasswordDTO dto
     ) {
         return ResponseEntity.ok(pipeline.send(new UpdatePasswordCommand(
-                dto.getEmail(),
-                dto.getVerificationCode(),
-                dto.getPassword()
+                dto.email(),
+                dto.verificationCode(),
+                dto.password()
         )));
     }
 }
