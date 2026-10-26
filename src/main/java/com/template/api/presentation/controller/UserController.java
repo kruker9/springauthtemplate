@@ -21,10 +21,9 @@ public class UserController {
         this.authContext = authContext;
     }
 
-
     @GetMapping("/role")
     public ResponseEntity<Role> getMyRole() {
-        var user = authContext.getAuthUser()
+        final var user = authContext.getAuthUser()
                 .orElseThrow(UnauthorizedException::new);
         return ResponseEntity.ok(this.pipeline.send(new GetMyRoleCommand(Role.valueOf(user.getRole()))));
     }
