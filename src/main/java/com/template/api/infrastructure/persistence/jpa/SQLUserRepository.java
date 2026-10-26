@@ -32,7 +32,7 @@ public class SQLUserRepository implements UserRepository {
 
     @Override
     public void save(User user) {
-        UserEntity entity = UserMapper.toEntity(user);
+        final UserEntity entity = UserMapper.toEntity(user);
         accessor.save(entity);
     }
 
