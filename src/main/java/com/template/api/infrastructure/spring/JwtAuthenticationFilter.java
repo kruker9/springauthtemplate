@@ -28,15 +28,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
-        var token = request.getHeader("Authorization");
+        final var token = request.getHeader("Authorization");
         if (token != null && token.startsWith("Bearer ")) {
-            var jwt =  token.substring(7);
-            var user = jwtService.parseAccessToken(jwt);
+            final var jwt =  token.substring(7);
+            final var user = jwtService.parseAccessToken(jwt);
             if (user != null) {
-                var authorities = new ArrayList<GrantedAuthority>();
+                final var authorities = new ArrayList<GrantedAuthority>();
                 authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
 
-                var authentication = new UsernamePasswordAuthenticationToken(
+                final var authentication = new UsernamePasswordAuthenticationToken(
                         user,
                         null,
                         authorities
