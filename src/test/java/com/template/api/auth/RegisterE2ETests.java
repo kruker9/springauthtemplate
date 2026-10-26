@@ -53,9 +53,9 @@ public class RegisterE2ETests extends IntegrationTests {
 
             var idResponse = objectMapper.readValue(result.getResponse().getContentAsString(), IdResponse.class);
 
-            assertNotNull(idResponse.getId());
+            assertNotNull(idResponse.id());
 
-            var user = userRepository.findById(idResponse.getId()).orElseThrow();
+            var user = userRepository.findById(idResponse.id()).orElseThrow();
 
             assertEquals(dto.email(), user.getEmailAddress());
             assertNotEquals(dto.password(), user.getPassword());

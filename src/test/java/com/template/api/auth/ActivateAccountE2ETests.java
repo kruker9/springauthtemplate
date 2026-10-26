@@ -37,7 +37,7 @@ public class ActivateAccountE2ETests extends IntegrationTests {
             var idResponse = objectMapper.readValue(response.getResponse().getContentAsString(), IdResponse.class);
 
             assertNotNull(idResponse);
-            assertEquals("1", idResponse.getId());
+            assertEquals("1", idResponse.id());
         }
     }
 

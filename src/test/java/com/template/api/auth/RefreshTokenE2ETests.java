@@ -23,7 +23,7 @@ public class RefreshTokenE2ETests extends IntegrationTests {
     class HappyPath {
         @Test
         public void shouldRefreshToken() throws Exception {
-            var dto = new RefreshTokenDTO(createAccessAndRefreshToken().getRefreshToken());
+            var dto = new RefreshTokenDTO(createAccessAndRefreshToken().refreshToken());
 
             var response = mockMvc.perform(MockMvcRequestBuilders.post("/auth/refresh")
                     .contentType("application/json")
@@ -34,7 +34,7 @@ public class RefreshTokenE2ETests extends IntegrationTests {
             var accessToken = objectMapper.readValue(response.getResponse().getContentAsString(), AccessTokenViewModel.class);
 
             assertNotNull(accessToken);
-            assertNotNull(accessToken.getAccessToken());
+            assertNotNull(accessToken.accessToken());
         }
     }
 

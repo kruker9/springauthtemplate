@@ -35,8 +35,8 @@ public class ActivateAccountTests extends UnitTests {
             var handler = createHandler();
             var result = handler.handle(command);
             assertNotNull(result);
-            assertEquals("1", result.getId());
-            var user = userRepository.findById(result.getId()).get();
+            assertEquals("1", result.id());
+            var user = userRepository.findById(result.id()).get();
             assertTrue(user.isActive());
         }
     }

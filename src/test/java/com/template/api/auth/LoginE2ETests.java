@@ -36,10 +36,10 @@ public class LoginE2ETests extends IntegrationTests {
             var loggedInUserView = objectMapper.readValue(response.getResponse().getContentAsString(), LoggedInUserViewModel.class);
 
             assertNotNull(loggedInUserView);
-            assertEquals(loggedInUserView.getId(), "1");
-            assertEquals(loggedInUserView.getEmailAddress(), "already@example.fr");
-            assertNotNull(loggedInUserView.getAccessToken());
-            assertNotNull(loggedInUserView.getRefreshToken());
+            assertEquals(loggedInUserView.id(), "1");
+            assertEquals(loggedInUserView.emailAddress(), "already@example.fr");
+            assertNotNull(loggedInUserView.accessToken());
+            assertNotNull(loggedInUserView.refreshToken());
         }
     }
 

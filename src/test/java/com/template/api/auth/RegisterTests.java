@@ -30,8 +30,8 @@ public class RegisterTests extends UnitTests {
             var command = new RegisterCommand("correct@example.fr", "CorrectPassword123456789@");
             var handler = createHandler();
             var response = handler.handle(command);
-            assertNotNull(response.getId());
-            var user = userRepository.findById(response.getId());
+            assertNotNull(response.id());
+            var user = userRepository.findById(response.id());
             assertTrue(user.isPresent());
             assertEquals(command.emailAddress(), user.get().getEmailAddress());
             assertNotEquals(command.emailAddress(), user.get().getPassword());

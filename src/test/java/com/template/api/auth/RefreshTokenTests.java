@@ -26,11 +26,11 @@ public class RefreshTokenTests extends UnitTests {
     class HappyPath {
         @Test
         void shouldRefreshToken() {
-            var command = new RefreshTokenCommand(createAccessAndRefreshToken().getRefreshToken());
+            var command = new RefreshTokenCommand(createAccessAndRefreshToken().refreshToken());
             var handler = createHandler();
             var response = handler.handle(command);
             assertNotNull(response);
-            assertNotNull(response.getAccessToken());
+            assertNotNull(response.accessToken());
         }
     }
 

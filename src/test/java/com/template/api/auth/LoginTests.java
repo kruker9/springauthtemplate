@@ -32,10 +32,10 @@ public class LoginTests extends UnitTests {
             var command = new LoginCommand("already@example.fr", "Azerty123456789@");
             var handler = createHandler();
             var response = handler.handle(command);
-            assertEquals("1", response.getId());
-            assertEquals("already@example.fr", response.getEmailAddress());
-            assertNotNull(response.getAccessToken());
-            assertNotNull(response.getRefreshToken());
+            assertEquals("1", response.id());
+            assertEquals("already@example.fr", response.emailAddress());
+            assertNotNull(response.accessToken());
+            assertNotNull(response.refreshToken());
         }
     }
 
